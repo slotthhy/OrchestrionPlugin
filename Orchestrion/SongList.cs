@@ -22,7 +22,7 @@ public struct Song
 
 public static class SongList
 {
-    private const string SheetPath = @"https://docs.google.com/spreadsheets/d/1gGNCu85sjd-4CDgqw-K5tefTe4HYuDK38LkRyvx_fEc/gviz/tq?tqx=out:csv&sheet=main";
+    public static string SheetPath = @"https://docs.google.com/spreadsheets/d/1oJOGB3UUGHeaLAHQIDftNjUEj6h9lVex3LlfvYuUVk8/gviz/tq?tqx=out:csv&sheet=main";
     private const string SheetFileName = "xiv_bgm.csv";
 
     private static Dictionary<int, Song> _songs;
@@ -38,12 +38,20 @@ public static class SongList
         _songs = new Dictionary<int, Song>();
 
         var existingText = File.ReadAllText(sheetPath);
-
+        if (!OrchestrionPlugin.Configuration.AutoUpdate)
+        {
+            // if user disabled auto-update, just load the existing sheet
+            LoadSheet(existingText);
+            return;
+        }
         using var client = new HttpClient();
         try
         {
             PluginLog.Log("Checking for updated bgm sheet");
             var newText = client.GetStringAsync(SheetPath).Result;
+#if DEBUG
+            PluginLog.Log($"Got updated bgm sheet{newText}");
+#endif
             LoadSheet(newText);
 
             // would really prefer some kind of proper versioning here
@@ -52,10 +60,16 @@ public static class SongList
                 File.WriteAllText(sheetPath, newText);
                 PluginLog.Log("Updated bgm sheet to new version");
             }
+
+            Multilanguage.IfUpdatingLanguage = false;
         }
         catch (Exception e)
         {
             PluginLog.Error(e, "Orchestrion failed to update bgm sheet; using previous version");
+            if (Multilanguage.IfUpdatingLanguage)
+            {
+                Multilanguage.UpdateFailed();
+            }
             // if this throws, something went horribly wrong and we should just break completely
             LoadSheet(existingText);
         }

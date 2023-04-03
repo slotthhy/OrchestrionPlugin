@@ -1,19 +1,19 @@
-﻿using System;
-using Dalamud.Game.Command;
-using Dalamud.Game.Text;
-using Dalamud.Plugin;
-using System.Collections.Generic;
-using System.Linq;
-using Dalamud.Data;
+﻿using Dalamud.Data;
 using Dalamud.Game;
 using Dalamud.Game.ClientState;
+using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
 using Dalamud.Game.Gui.Dtr;
+using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.IoC;
 using Dalamud.Logging;
+using Dalamud.Plugin;
 using FFXIVClientStructs.FFXIV.Component.GUI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Orchestrion;
 
@@ -80,6 +80,7 @@ public class OrchestrionPlugin : IDalamudPlugin
             dtrEntry = dtrBar.Get(ConstName);
         }
 
+        SongList.SheetPath = Configuration.SongListPath;
         SongList.Init(pluginInterface.AssemblyLocation.DirectoryName);
         BGMAddressResolver.Init(sigScanner);
         BGMController.OnSongChanged += HandleSongChanged;
@@ -293,6 +294,10 @@ public class OrchestrionPlugin : IDalamudPlugin
         UpdateDtr(BGMController.CurrentSongId);
     }
 
+    public void UpdateDteOnLanguageChanged()
+    {
+        UpdateDtr(BGMController.CurrentSongId);
+    }
     public void PlaySong(int songId, bool isReplacement = false)
     {
         PluginLog.Debug($"Playing {songId}");

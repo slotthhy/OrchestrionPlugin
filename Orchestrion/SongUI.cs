@@ -7,6 +7,7 @@ using System.Text;
 using Dalamud.Interface;
 using Dalamud.Interface.Colors;
 using Dalamud.Logging;
+using Dalamud.Game.Text;
 
 namespace Orchestrion;
 
@@ -484,7 +485,8 @@ public class SongUI : IDisposable
                         if (ImGui.Selectable("Remove from favorites"))
                             SongList.RemoveFavorite(song.Id);
                     }
-
+                    if (ImGui.Selectable("Copy to clipboard"))
+                        ImGui.SetClipboardText(song.Name);
                     ImGui.EndPopup();
                 }
 
@@ -560,7 +562,8 @@ public class SongUI : IDisposable
                         if (ImGui.Selectable("Remove from favorites"))
                             SongList.RemoveFavorite(song.Id);
                     }
-
+                    if(ImGui.Selectable("Copy to clipboard"))
+                        ImGui.SetClipboardText(song.Name);
                     ImGui.EndPopup();
                 }
 
@@ -585,12 +588,35 @@ public class SongUI : IDisposable
             return;
 
         var stream = BGMAddressResolver.StreamingEnabled;
-        var height = stream ? 170 : 240;
+        //var height = stream ? 170 : 240;
         
-        ImGui.SetNextWindowSize(ScaledVector2(520, height), ImGuiCond.Always);
-        if (ImGui.Begin("Orchestrion Settings", ref settingsVisible, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoScrollWithMouse | ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoCollapse))
+        //ImGui.SetNextWindowSize(ScaledVector2(520, 200), ImGuiCond.Always);
+        if (ImGui.Begin("Orchestrion Settings", ref settingsVisible/*, ImGuiWindowFlags.NoResize |*ImGuiWindowFlags.NoScrollWithMouse | ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoCollapse*/))
         {
-            ImGui.SetNextItemOpen(true, ImGuiCond.Always);
+            // ImGui.SetNextItemOpen(true, ImGuiCond.Always);
+            // Choose ListLanguage
+            if (ImGui.BeginCombo("Song List ListLanguage", OrchestrionPlugin.Configuration.ListLanguage))
+            {
+                foreach (string lang in Multilanguage.SupportedListLanguages)
+                {
+                    bool isSelected = OrchestrionPlugin.Configuration.ListLanguage == lang;
+                    if (ImGui.Selectable(lang, ref isSelected))
+                    {
+                        PluginLog.Information($"Song List ListLanguage changed to {lang}.Downloading from {Multilanguage.SongListUrls[lang]}");
+                        Multilanguage.UpdateLangugae(lang);
+                        orch.UpdateDteOnLanguageChanged();
+                    }
+                }
+
+                ImGui.EndCombo();
+            }
+            // Enable Auto Update
+            var autoUpdate = OrchestrionPlugin.Configuration.AutoUpdate;
+            if (ImGui.Checkbox("Auto Update Song List", ref autoUpdate))
+            {
+                OrchestrionPlugin.Configuration.AutoUpdate = autoUpdate;
+                OrchestrionPlugin.Configuration.Save();
+            }
             var showSongInTitlebar = OrchestrionPlugin.Configuration.ShowSongInTitleBar;
             if (ImGui.Checkbox("Show current song in player title bar", ref showSongInTitlebar))
             {

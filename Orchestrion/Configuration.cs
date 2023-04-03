@@ -2,6 +2,7 @@
 using Dalamud.Plugin;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using Newtonsoft.Json;
 
 namespace Orchestrion
@@ -10,7 +11,9 @@ namespace Orchestrion
     public class Configuration : IPluginConfiguration
     {
         public int Version { get; set; } = 1;
-
+        public bool AutoUpdate { get; set; } = true;
+        public string ListLanguage { get; set; } = "en";
+        public string SongListPath { get; set; } = @"https://docs.google.com/spreadsheets/d/1oJOGB3UUGHeaLAHQIDftNjUEj6h9lVex3LlfvYuUVk8/gviz/tq?tqx=out:csv&sheet=main";
         public bool ShowSongInTitleBar { get; set; } = true;
         public bool ShowSongInChat { get; set; } = true;
         public bool ShowIdInNative { get; set; } = false;
