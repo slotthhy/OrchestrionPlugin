@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Dalamud.Game.Command;
 using Dalamud.Game.Text;
 using Dalamud.Plugin;
@@ -77,11 +78,30 @@ public class OrchestrionPlugin : IDalamudPlugin
 
 		DalamudApi.Framework.Update += OrchestrionUpdate;
 		DalamudApi.ClientState.Logout += ClientStateOnLogout;
-
-		DalamudApi.PluginInterface.UiBuilder.BuildFonts += BuildFonts;
-		DalamudApi.PluginInterface.UiBuilder.RebuildFonts();
-
+		
 		DalamudApi.PluginInterface.LanguageChanged += LanguageChanged;
+		
+		var atlas = DalamudApi.PluginInterface.UiBuilder.FontAtlas;
+		CnFont = atlas.NewDelegateFontHandle(e => e.OnPreBuild(tk => {
+			var config = new SafeFontConfig
+			{
+				SizePx = UiBuilder.DefaultFontSizePx,
+				GlyphRanges = SongList.Instance
+					.GetSongs()
+					.Values
+					.SelectMany(x => x.Strings.GetValueOrDefault("zh", default).Name ?? string.Empty)
+					.Concat(Enumerable.Range(1, 127).Select(x => (char)x))
+					.ToGlyphRange(),
+			};
+			tk.Font = tk.AddDalamudAssetFont(DalamudAsset.NotoSansJpMedium, config);
+		}));
+		if (CnFont.LoadException != null)
+		{
+			DalamudApi.PluginLog.Debug(CnFont.LoadException.Message);	
+			DalamudApi.PluginLog.Debug(CnFont.LoadException.StackTrace);	
+		}
+		
+		LargeFont = atlas.NewGameFontHandle(new GameFontStyle(GameFontFamily.Axis, 24 * ImGuiHelpers.GlobalScale));
 	}
 
 	public static void LanguageChanged(string code)
@@ -93,60 +113,19 @@ public class OrchestrionPlugin : IDalamudPlugin
 		var content = new StreamReader(stream).ReadToEnd();
 		Loc.Setup(content);
 	}
-
-	private void BuildFonts()
-	{
-		var atlas = DalamudApi.PluginInterface.UiBuilder.FontAtlas;
-		CnFont = atlas.NewDelegateFontHandle(e => e.OnPreBuild(tk => {
-			var config = new SafeFontConfig
-			{
-				SizePx = UiBuilder.DefaultFontSizePx,
-				GlyphRanges = ImGuiHelpers.CreateImGuiRangesFrom(
-					UnicodeRanges.CjkUnifiedIdeographs,
-					UnicodeRanges.CjkUnifiedIdeographsExtensionA,
-					UnicodeRanges.BasicLatin),
-			};
-			// tk.Font = tk.AddDalamudAssetFont(DalamudAsset.NotoSansJpMedium, config);
-			tk.Font = tk.AddFontFromFile(@"c:/windows/fonts/msyh.ttc", config);
-		}));
-		if (CnFont.LoadException != null)
-		{
-			DalamudApi.PluginLog.Debug(CnFont.LoadException.Message);	
-			DalamudApi.PluginLog.Debug(CnFont.LoadException.StackTrace);	
-		}
-		
-		LargeFont = atlas.NewGameFontHandle(new GameFontStyle(GameFontFamily.Axis, 24 * ImGuiHelpers.GlobalScale));
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-		DalamudApi.PluginLog.Debug($"fonts built");
-	}
-
+	
 	public void Dispose()
 	{
 		_mainWindow.Dispose();
 		DalamudApi.Framework.Update -= OrchestrionUpdate;
 		DalamudApi.PluginInterface.UiBuilder.Draw -= _windowSystem.Draw;
-		DalamudApi.PluginInterface.UiBuilder.BuildFonts -= BuildFonts;
+		// DalamudApi.PluginInterface.UiBuilder.BuildFonts -= BuildFonts;
 		DalamudApi.CommandManager.RemoveHandler(CommandName);
 		_dtrEntry?.Dispose();
 		PlaylistManager.Dispose();
 		BGMManager.Dispose();
+		LargeFont?.Dispose();
+		CnFont?.Dispose();
 	}
 
 	private void OrchestrionUpdate(IFramework ignored)

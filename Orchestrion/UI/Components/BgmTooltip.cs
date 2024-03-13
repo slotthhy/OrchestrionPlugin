@@ -32,17 +32,15 @@ public static class BgmTooltip
 		{
 			var code = Configuration.Instance.AltTitleLanguageCode;
 			var altLangTitle = bgm.Strings[code].Name;
-			OrchestrionPlugin.CnFont.Push();
-			DalamudApi.PluginLog.Debug($"alt lang is {altLangTitle} for {code}, thing is, CnFont loadexception null?: {OrchestrionPlugin.CnFont.LoadException == null}");
 			if (bgm.Name != altLangTitle && !string.IsNullOrEmpty(altLangTitle))
 			{
 				var label = Loc.Localize("TitleColon", "Title: ");
 				label = $"[{code}] {label}";
 				ImGui.TextColored(ImGuiColors.DalamudGrey, label);
 				ImGui.SameLine();
+				using var _ = code == "zh" ? OrchestrionPlugin.CnFont.Push() : null;
 				ImGui.TextWrapped(altLangTitle);
 			}
-			OrchestrionPlugin.CnFont.Pop();
 		}
 
 		if (!string.IsNullOrEmpty(bgm.AlternateName))
@@ -61,6 +59,7 @@ public static class BgmTooltip
 					label = $"[{code}] {label}";
 					ImGui.TextColored(ImGuiColors.DalamudGrey, label);
 					ImGui.SameLine();
+					using var _ = code == "zh" ? OrchestrionPlugin.CnFont.Push() : null;
 					ImGui.TextWrapped(altLangAltTitle);
 				}
 			}
@@ -82,6 +81,7 @@ public static class BgmTooltip
 					label = $"[{code}] {label}";
 					ImGui.TextColored(ImGuiColors.DalamudGrey, label);
 					ImGui.SameLine();
+					using var _ = code == "zh" ? OrchestrionPlugin.CnFont.Push() : null;
 					ImGui.TextWrapped(altLangSpecialModeName);
 				}
 			}
