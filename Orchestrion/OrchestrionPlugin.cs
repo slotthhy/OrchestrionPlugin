@@ -1,13 +1,18 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Dalamud.Game.Command;
 using Dalamud.Game.Text;
 using Dalamud.Plugin;
 using System.Linq;
 using System.Reflection;
+using System.Text.Unicode;
 using CheapLoc;
+using Dalamud;
 using Dalamud.Game.Gui.Dtr;
 using Dalamud.Game.Text.SeStringHandling;
+using Dalamud.Interface;
 using Dalamud.Interface.GameFonts;
+using Dalamud.Interface.ManagedFontAtlas;
 using Dalamud.Interface.Utility;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
@@ -27,8 +32,9 @@ public class OrchestrionPlugin : IDalamudPlugin
 	private const string ConstName = "Orchestrion";
 	private const string CommandName = "/porch";
 	private const string NativeNowPlayingPrefix = "♪ ";
-
-	public static ImFontPtr LargeFont { get; private set; }
+	
+	public static IFontHandle CnFont { get; private set; }
+	public static IFontHandle LargeFont { get; private set; }
 
 	public string Name => ConstName;
 
@@ -72,11 +78,30 @@ public class OrchestrionPlugin : IDalamudPlugin
 
 		DalamudApi.Framework.Update += OrchestrionUpdate;
 		DalamudApi.ClientState.Logout += ClientStateOnLogout;
-
-		DalamudApi.PluginInterface.UiBuilder.BuildFonts += BuildFonts;
-		DalamudApi.PluginInterface.UiBuilder.RebuildFonts();
-
+		
 		DalamudApi.PluginInterface.LanguageChanged += LanguageChanged;
+		
+		var atlas = DalamudApi.PluginInterface.UiBuilder.FontAtlas;
+		CnFont = atlas.NewDelegateFontHandle(e => e.OnPreBuild(tk => {
+			var config = new SafeFontConfig
+			{
+				SizePx = UiBuilder.DefaultFontSizePx,
+				GlyphRanges = SongList.Instance
+					.GetSongs()
+					.Values
+					.SelectMany(x => x.Strings.GetValueOrDefault("zh", default).Name ?? string.Empty)
+					.Concat(Enumerable.Range(1, 127).Select(x => (char)x))
+					.ToGlyphRange(),
+			};
+			tk.Font = tk.AddDalamudAssetFont(DalamudAsset.NotoSansJpMedium, config);
+		}));
+		if (CnFont.LoadException != null)
+		{
+			DalamudApi.PluginLog.Debug(CnFont.LoadException.Message);	
+			DalamudApi.PluginLog.Debug(CnFont.LoadException.StackTrace);	
+		}
+		
+		LargeFont = atlas.NewGameFontHandle(new GameFontStyle(GameFontFamily.Axis, 24 * ImGuiHelpers.GlobalScale));
 	}
 
 	public static void LanguageChanged(string code)
@@ -88,22 +113,19 @@ public class OrchestrionPlugin : IDalamudPlugin
 		var content = new StreamReader(stream).ReadToEnd();
 		Loc.Setup(content);
 	}
-
-	private void BuildFonts()
-	{
-		LargeFont = DalamudApi.PluginInterface.UiBuilder.GetGameFontHandle(new GameFontStyle(GameFontFamily.Axis, 24 * ImGuiHelpers.GlobalScale)).ImFont;
-	}
-
+	
 	public void Dispose()
 	{
 		_mainWindow.Dispose();
 		DalamudApi.Framework.Update -= OrchestrionUpdate;
 		DalamudApi.PluginInterface.UiBuilder.Draw -= _windowSystem.Draw;
-		DalamudApi.PluginInterface.UiBuilder.BuildFonts -= BuildFonts;
+		// DalamudApi.PluginInterface.UiBuilder.BuildFonts -= BuildFonts;
 		DalamudApi.CommandManager.RemoveHandler(CommandName);
 		_dtrEntry?.Dispose();
 		PlaylistManager.Dispose();
 		BGMManager.Dispose();
+		LargeFont?.Dispose();
+		CnFont?.Dispose();
 	}
 
 	private void OrchestrionUpdate(IFramework ignored)
@@ -120,7 +142,7 @@ public class OrchestrionPlugin : IDalamudPlugin
 		DalamudApi.ChatGui.Print(new XivChatEntry
 		{
 			Message = _songEchoMsg,
-			Type = DalamudApi.PluginInterface.GeneralChatType,
+			Type = Configuration.Instance.ChatType,
 		});
 
 		_songEchoMsg = null;

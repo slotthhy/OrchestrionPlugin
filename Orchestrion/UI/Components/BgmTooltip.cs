@@ -38,6 +38,7 @@ public static class BgmTooltip
 				label = $"[{code}] {label}";
 				ImGui.TextColored(ImGuiColors.DalamudGrey, label);
 				ImGui.SameLine();
+				using var _ = code == "zh" ? OrchestrionPlugin.CnFont.Push() : null;
 				ImGui.TextWrapped(altLangTitle);
 			}
 		}
@@ -58,6 +59,7 @@ public static class BgmTooltip
 					label = $"[{code}] {label}";
 					ImGui.TextColored(ImGuiColors.DalamudGrey, label);
 					ImGui.SameLine();
+					using var _ = code == "zh" ? OrchestrionPlugin.CnFont.Push() : null;
 					ImGui.TextWrapped(altLangAltTitle);
 				}
 			}
@@ -79,6 +81,7 @@ public static class BgmTooltip
 					label = $"[{code}] {label}";
 					ImGui.TextColored(ImGuiColors.DalamudGrey, label);
 					ImGui.SameLine();
+					using var _ = code == "zh" ? OrchestrionPlugin.CnFont.Push() : null;
 					ImGui.TextWrapped(altLangSpecialModeName);
 				}
 			}

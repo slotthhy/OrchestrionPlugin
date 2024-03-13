@@ -68,6 +68,6 @@ public static class Util
 
 	public static string Lang()
 	{
-		return DalamudApi.PluginInterface.UiLanguage;
+		return Configuration.Instance.UserInterfaceLanguageCode;
 	}
 }

@@ -84,6 +84,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>xiv_bgm_ja.csv</TargetPath>
     </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Data\xiv_bgm_zh.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>xiv_bgm_zh.csv</TargetPath>
+    </ContentWithTargetPath>
     <ContentWithTargetPath Include="Data\xiv_bgm_metadata.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>xiv_bgm_metadata.csv</TargetPath>
