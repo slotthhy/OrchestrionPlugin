@@ -44,12 +44,14 @@ public partial class MainWindow
 	
 	private void DrawPlaylistSongs()
 	{
-		ImGui.PushFont(OrchestrionPlugin.LargeFont);
-		var text = _selectedPlaylist?.Name ?? Loc.Localize("NoPlaylistSelected", "No Playlist Selected");
-		var pSize = ImGui.CalcTextSize(text);
-		ImGui.SetCursorPosX((ImGui.GetContentRegionAvail().X - pSize.X) / 2);
-		ImGui.Text(text);
-		ImGui.PopFont();
+		using (OrchestrionPlugin.LargeFont.Push())
+		{
+			var text = _selectedPlaylist?.Name ?? Loc.Localize("NoPlaylistSelected", "No Playlist Selected");
+			var pSize = ImGui.CalcTextSize(text);
+			ImGui.SetCursorPosX((ImGui.GetContentRegionAvail().X - pSize.X) / 2);
+			ImGui.Text(text);			
+		}
+		
 		ImGui.Separator();
 		
 		ImGui.BeginChild("##playlist_internal", ImGuiHelpers.ScaledVector2(-1f, -1 * PlaylistPaneSize));

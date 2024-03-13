@@ -32,6 +32,8 @@ public static class BgmTooltip
 		{
 			var code = Configuration.Instance.AltTitleLanguageCode;
 			var altLangTitle = bgm.Strings[code].Name;
+			OrchestrionPlugin.CnFont.Push();
+			DalamudApi.PluginLog.Debug($"alt lang is {altLangTitle} for {code}, thing is, CnFont loadexception null?: {OrchestrionPlugin.CnFont.LoadException == null}");
 			if (bgm.Name != altLangTitle && !string.IsNullOrEmpty(altLangTitle))
 			{
 				var label = Loc.Localize("TitleColon", "Title: ");
@@ -40,6 +42,7 @@ public static class BgmTooltip
 				ImGui.SameLine();
 				ImGui.TextWrapped(altLangTitle);
 			}
+			OrchestrionPlugin.CnFont.Pop();
 		}
 
 		if (!string.IsNullOrEmpty(bgm.AlternateName))

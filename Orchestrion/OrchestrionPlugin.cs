@@ -4,10 +4,14 @@ using Dalamud.Game.Text;
 using Dalamud.Plugin;
 using System.Linq;
 using System.Reflection;
+using System.Text.Unicode;
 using CheapLoc;
+using Dalamud;
 using Dalamud.Game.Gui.Dtr;
 using Dalamud.Game.Text.SeStringHandling;
+using Dalamud.Interface;
 using Dalamud.Interface.GameFonts;
+using Dalamud.Interface.ManagedFontAtlas;
 using Dalamud.Interface.Utility;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
@@ -27,8 +31,9 @@ public class OrchestrionPlugin : IDalamudPlugin
 	private const string ConstName = "Orchestrion";
 	private const string CommandName = "/porch";
 	private const string NativeNowPlayingPrefix = "♪ ";
-
-	public static ImFontPtr LargeFont { get; private set; }
+	
+	public static IFontHandle CnFont { get; private set; }
+	public static IFontHandle LargeFont { get; private set; }
 
 	public string Name => ConstName;
 
@@ -91,7 +96,45 @@ public class OrchestrionPlugin : IDalamudPlugin
 
 	private void BuildFonts()
 	{
-		LargeFont = DalamudApi.PluginInterface.UiBuilder.GetGameFontHandle(new GameFontStyle(GameFontFamily.Axis, 24 * ImGuiHelpers.GlobalScale)).ImFont;
+		var atlas = DalamudApi.PluginInterface.UiBuilder.FontAtlas;
+		CnFont = atlas.NewDelegateFontHandle(e => e.OnPreBuild(tk => {
+			var config = new SafeFontConfig
+			{
+				SizePx = UiBuilder.DefaultFontSizePx,
+				GlyphRanges = ImGuiHelpers.CreateImGuiRangesFrom(
+					UnicodeRanges.CjkUnifiedIdeographs,
+					UnicodeRanges.CjkUnifiedIdeographsExtensionA,
+					UnicodeRanges.BasicLatin),
+			};
+			// tk.Font = tk.AddDalamudAssetFont(DalamudAsset.NotoSansJpMedium, config);
+			tk.Font = tk.AddFontFromFile(@"c:/windows/fonts/msyh.ttc", config);
+		}));
+		if (CnFont.LoadException != null)
+		{
+			DalamudApi.PluginLog.Debug(CnFont.LoadException.Message);	
+			DalamudApi.PluginLog.Debug(CnFont.LoadException.StackTrace);	
+		}
+		
+		LargeFont = atlas.NewGameFontHandle(new GameFontStyle(GameFontFamily.Axis, 24 * ImGuiHelpers.GlobalScale));
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
+		DalamudApi.PluginLog.Debug($"fonts built");
 	}
 
 	public void Dispose()
@@ -120,7 +163,7 @@ public class OrchestrionPlugin : IDalamudPlugin
 		DalamudApi.ChatGui.Print(new XivChatEntry
 		{
 			Message = _songEchoMsg,
-			Type = DalamudApi.PluginInterface.GeneralChatType,
+			Type = Configuration.Instance.ChatType,
 		});
 
 		_songEchoMsg = null;

@@ -80,12 +80,6 @@ public partial class MainWindow : Window, IDisposable
 
 		BGMManager.OnSongChanged += SongChanged;
 		ResetReplacement();
-
-		SizeConstraints = new WindowSizeConstraints
-		{
-			MinimumSize = new Vector2(370, 400),
-			MaximumSize = new Vector2(float.MaxValue, float.MaxValue),
-		};
 	}
 
 	private void SongChanged(int oldSong, int currentSong, int oldSecondSong, int secondSong, bool oldPlayedByOrch, bool playedByOrchestrion)

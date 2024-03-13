@@ -70,9 +70,10 @@ public class SettingsWindow : Window
     
     public override void Draw()
 	{
-        ImGui.PushFont(OrchestrionPlugin.LargeFont);
-        ImGui.Text(Loc.Localize("GeneralSettings", "General Settings"));
-        ImGui.PopFont();
+        using (OrchestrionPlugin.LargeFont.Push())
+        {
+            ImGui.Text(Loc.Localize("GeneralSettings", "General Settings"));    
+        }
         
         ImGui.PushItemWidth(500f);
         
@@ -137,10 +138,11 @@ public class SettingsWindow : Window
             Enum.GetValues<XivChatType>().Select(c => c.ToString()).ToList());
         ImGui.Indent(-1 * 30f * ImGuiHelpers.GlobalScale);
         ImGui.EndDisabled();
-        
-        ImGui.PushFont(OrchestrionPlugin.LargeFont);
-        ImGui.Text(Loc.Localize("LocSettings", "Localization Settings"));
-        ImGui.PopFont();
+
+        using (OrchestrionPlugin.LargeFont.Push())
+        {
+            ImGui.Text(Loc.Localize("LocSettings", "Localization Settings"));
+        }
         
         Checkbox(Loc.Localize("UseDalamudLanguageSetting", 
                 "Use the language selected in Dalamud's settings for the Orchestrion Plugin's UI"),
@@ -203,9 +205,10 @@ public class SettingsWindow : Window
             Util.AvailableTitleLanguages,
             Util.LangCodeToLanguage);
         
-        ImGui.PushFont(OrchestrionPlugin.LargeFont);
-        ImGui.Text(Loc.Localize("MiniPlayerSettings", "Mini Player Settings"));
-        ImGui.PopFont();
+        using (OrchestrionPlugin.LargeFont.Push())
+        {
+            ImGui.Text(Loc.Localize("MiniPlayerSettings", "Mini Player Settings"));   
+        }
         
         Checkbox(Loc.Localize("ShowMiniPlayer", "Show mini player"),
             () => Configuration.Instance.ShowMiniPlayer, 
