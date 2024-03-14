@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Numerics;
 using Dalamud;
+using System.Reflection;
 using Dalamud.Interface;
 using ImGuiNET;
 using Orchestrion.Persistence;
@@ -69,5 +70,75 @@ public static class Util
 	public static string Lang()
 	{
 		return Configuration.Instance.UserInterfaceLanguageCode;
+	}
+
+	public static void CheckSongData()
+	{
+		var uiLang = Lang();
+		const string uiLangFallback = "en";
+
+		var songs = SongList.Instance.GetSongs();
+		var errors = 0;
+		var fallbacks = 0;
+
+		foreach (var (songId, song) in songs) {
+			foreach (var titleLang in AvailableTitleLanguages) {
+				if (!song.Strings.TryGetValue(titleLang, out var strings)) {
+					DalamudApi.PluginLog.Warning($"Song ID {songId} is missing string table for title language [{titleLang}]");
+					errors++;
+				}
+				else {
+					if (strings.Name == null) {
+						DalamudApi.PluginLog.Warning($"Song ID {songId} is missing Name for title language [{titleLang}]");
+						errors++;
+					}
+					if (strings.AlternateName == null) {
+						DalamudApi.PluginLog.Warning($"Song ID {songId} is missing AlternateName for title language [{titleLang}]");
+						errors++;
+					}
+					if (strings.SpecialModeName == null) {
+						DalamudApi.PluginLog.Warning($"Song ID {songId} is missing SpecialModeName for title language [{titleLang}]");
+						errors++;
+					}
+				}
+			}
+
+			if (!song.Strings.TryGetValue(uiLang, out var strings2)) {
+				DalamudApi.PluginLog.Info($"Song ID {songId} is missing title info for UI language [{uiLang}], using fallback [{uiLangFallback}]");
+				fallbacks++;
+			}
+			else {
+				if (strings2.Locations == null) {
+					DalamudApi.PluginLog.Warning($"Song ID {songId} is missing Locations for UI language [{uiLang}]");
+					errors++;
+				}
+				if (strings2.AdditionalInfo == null) {
+					DalamudApi.PluginLog.Warning($"Song ID {songId} is missing AdditionalInfo for UI language [{uiLang}]");
+					errors++;
+				}
+				continue;
+			}
+
+			if (!song.Strings.TryGetValue(uiLangFallback, out strings2)) {
+				DalamudApi.PluginLog.Info($"Song ID {songId} is missing title info for UI fallback language [{uiLangFallback}]");
+				errors++;
+			}
+			else {
+				if (strings2.Locations == null) {
+					DalamudApi.PluginLog.Warning($"Song ID {songId} is missing Locations for UI fallback language [{uiLangFallback}]");
+					errors++;
+				}
+
+				if (strings2.AdditionalInfo == null) {
+					DalamudApi.PluginLog.Warning($"Song ID {songId} is missing AdditionalInfo for UI fallback language [{uiLangFallback}]");
+					errors++;
+				}
+			}
+		}
+
+		var version = Assembly.GetExecutingAssembly().GetName().Version;
+		var msg = $"Checked {songs.Count} songs with {errors} errors and {fallbacks} fallbacks found (lang {DalamudApi.PluginInterface.UiLanguage}/{uiLang}, version {(version != null ? version : "unknown")}).";
+		DalamudApi.PluginLog.Info(msg);
+		DalamudApi.ChatGui.Print(msg);
 	}
 }
