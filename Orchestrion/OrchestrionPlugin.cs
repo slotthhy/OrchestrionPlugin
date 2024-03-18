@@ -248,6 +248,9 @@ public class OrchestrionPlugin : IDalamudPlugin
 					case "ddmode":
 						BGMManager.StartDeepDungeonMode();
 						break;
+					case "check":
+						Util.CheckSongData();
+						break;
 				}
 				break;
 			case 2:
