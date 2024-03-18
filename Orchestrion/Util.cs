@@ -53,8 +53,9 @@ public static class Util
 			matchesSearch |= song.Id.ToString().Contains(searchText);
 
 			// Localized addtl info check
-			var strings = song.Strings["en"];
-			song.Strings.TryGetValue(lang, out strings);
+			if (!song.Strings.TryGetValue(lang, out var strings)) {
+				strings = song.Strings["en"];
+			}
 			matchesSearch |= strings.Locations.ToLower().Contains(searchText.ToLower());
 			matchesSearch |= strings.AdditionalInfo.ToLower().Contains(searchText.ToLower());
 		}

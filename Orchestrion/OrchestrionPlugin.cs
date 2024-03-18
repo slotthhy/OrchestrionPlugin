@@ -101,7 +101,7 @@ public class OrchestrionPlugin : IDalamudPlugin
 			DalamudApi.PluginLog.Debug(CnFont.LoadException.StackTrace);	
 		}
 		
-		LargeFont = atlas.NewGameFontHandle(new GameFontStyle(GameFontFamily.Axis, 24 * ImGuiHelpers.GlobalScale));
+		LargeFont = atlas.NewGameFontHandle(new GameFontStyle(GameFontFamily.Axis, 24));
 	}
 
 	public static void LanguageChanged(string code)
