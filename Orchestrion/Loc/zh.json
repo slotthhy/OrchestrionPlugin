@@ -219,6 +219,10 @@
     "message": "迷你播放器不透明度",
     "description": "SettingsWindow.Draw"
   },
+  "DisableFateMusic": {
+    "message": "Prevent fate music from overriding location music",
+    "description": "SettingsWindow.Draw"
+  },
   "DDModeDescription": {
     "message": "深层迷宫模式会在切换乐谱时从所有乐谱中或者指定的播放列表中随机播放乐谱。",
     "description": "MainWindow.DrawDeepDungeonModeSelector"

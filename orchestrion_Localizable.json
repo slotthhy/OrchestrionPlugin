@@ -47,6 +47,10 @@
     "message": "Mini player opacity",
     "description": "SettingsWindow.Draw"
   },
+  "DisableFateMusic": {
+    "message": "Prevent fate music from overriding location music",
+    "description": "SettingsWindow.Draw"
+  },
   "NoPlaylistSelected": {
     "message": "No Playlist Selected",
     "description": "MainWindow.DrawPlaylistSongs"

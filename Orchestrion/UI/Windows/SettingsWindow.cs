@@ -9,6 +9,7 @@ using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using Orchestrion.BGMSystem;
 using Orchestrion.Persistence;
+using Orchestrion.Types;
 
 namespace Orchestrion.UI.Windows;
 
@@ -23,6 +24,15 @@ public class SettingsWindow : Window
     {
         Size = ImGuiHelpers.ScaledVector2(720, 520);
     }
+
+    private readonly int[] _fateIds = [
+        36, // Torn from the Heavens
+        68, // The Tug of Fate
+        69, // To the Fore
+        115, // Hard to Miss
+        154, // Thunderer
+        165 // Torn from the Heavens
+    ];
 
     private static void Checkbox(string text, Func<bool> get, Action<bool> set, Action<bool> onChange = null)
     {
@@ -139,6 +149,12 @@ public class SettingsWindow : Window
         ImGui.Indent(-1 * 30f * ImGuiHelpers.GlobalScale);
         ImGui.EndDisabled();
 
+        Checkbox(Loc.Localize("DisableFateMusic",
+            "Prevent fate music from overriding location music"),
+            () => Configuration.Instance.DisableFateMusic,
+            b => Configuration.Instance.DisableFateMusic = b,
+            ToggleFateSongReplacements);
+
         using (OrchestrionPlugin.LargeFont.Push())
         {
             ImGui.Text(Loc.Localize("LocSettings", "Localization Settings"));
@@ -229,5 +245,28 @@ public class SettingsWindow : Window
         ImGui.TextWrapped(Loc.Localize("MiniPlayerOpacity", "Mini player opacity"));
         ImGui.PopItemWidth();
         ImGui.PopItemWidth();
+    }
+
+    private void ToggleFateSongReplacements(bool b)
+    {
+        if (b)
+        {
+            foreach (var songReplacement in _fateIds.Select(fateSongId => new SongReplacementEntry { TargetSongId = fateSongId, ReplacementId = -1 }))
+            {
+                Configuration.Instance.SongReplacements.Add(songReplacement.TargetSongId, songReplacement);
+            }
+
+            Configuration.Instance.Save();
+        }
+        else
+        {
+            foreach (var fateSongId in _fateIds.Where(Configuration.Instance.SongReplacements.ContainsKey))
+            {
+                if (Configuration.Instance.SongReplacements[fateSongId].ReplacementId == -1)
+                {
+                    Configuration.Instance.SongReplacements.Remove(fateSongId);
+                }
+            }
+        }
     }
 }
