@@ -5,7 +5,6 @@ using Dalamud.Game.Text;
 using Dalamud.Plugin;
 using System.Linq;
 using System.Reflection;
-using System.Text.Unicode;
 using CheapLoc;
 using Dalamud;
 using Dalamud.Game.Gui.Dtr;
@@ -13,11 +12,9 @@ using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Interface;
 using Dalamud.Interface.GameFonts;
 using Dalamud.Interface.ManagedFontAtlas;
-using Dalamud.Interface.Utility;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
 using FFXIVClientStructs.FFXIV.Component.GUI;
-using ImGuiNET;
 using Orchestrion.Audio;
 using Orchestrion.BGMSystem;
 using Orchestrion.Persistence;
@@ -43,11 +40,11 @@ public class OrchestrionPlugin : IDalamudPlugin
 	private readonly MainWindow _mainWindow;
 	private readonly SettingsWindow _settingsWindow;
 
-	private DtrBarEntry _dtrEntry;
+	private IDtrBarEntry _dtrEntry;
 
 	private SeString _songEchoMsg;
 
-	public OrchestrionPlugin(DalamudPluginInterface pi)
+	public OrchestrionPlugin(IDalamudPluginInterface pi)
 	{
 		DalamudApi.Initialize(pi);
 		LanguageChanged(DalamudApi.PluginInterface.UiLanguage);
@@ -121,7 +118,7 @@ public class OrchestrionPlugin : IDalamudPlugin
 		DalamudApi.PluginInterface.UiBuilder.Draw -= _windowSystem.Draw;
 		// DalamudApi.PluginInterface.UiBuilder.BuildFonts -= BuildFonts;
 		DalamudApi.CommandManager.RemoveHandler(CommandName);
-		_dtrEntry?.Dispose();
+		_dtrEntry?.Remove();
 		PlaylistManager.Dispose();
 		BGMManager.Dispose();
 		LargeFont?.Dispose();

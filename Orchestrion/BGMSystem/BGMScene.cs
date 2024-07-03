@@ -33,4 +33,6 @@ public unsafe struct BGMScene
 	private byte Unknown10;
 	private byte Unknown11;
 	private byte Unknown12;
+	private float Unknown13;
+	private uint Unknown14;
 }

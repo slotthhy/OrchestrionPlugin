@@ -13,9 +13,9 @@ public static class BGMAddressResolver
 
     public static unsafe void Init()
     {
-        _baseAddress = DalamudApi.SigScanner.GetStaticAddressFromSig("48 8B 05 ?? ?? ?? ?? 48 85 C0 74 37 83 78 08 04");
-        AddRestartId = DalamudApi.SigScanner.ScanText("48 89 5C 24 ?? 57 48 83 EC 30 48 8B 41 20 48 8D 79 18");
-        GetSpecialMode = DalamudApi.SigScanner.ScanText("48 89 5C 24 ?? 57 48 83 EC 20 8B 41 10 33 DB");
+        _baseAddress = DalamudApi.SigScanner.GetStaticAddressFromSig("48 8B 05 ?? ?? ?? ?? 48 85 C0 74 51 83 78 08 0B");
+        AddRestartId = DalamudApi.SigScanner.ScanText("E8 ?? ?? ?? ?? 88 9D ?? ?? ?? ?? 84 DB");
+        GetSpecialMode = DalamudApi.SigScanner.ScanText("48 89 5C 24 ?? 57 48 83 EC 20 44 8B 41 10");
             
         DalamudApi.PluginLog.Debug($"[BGMAddressResolver] init: base address at {_baseAddress.ToInt64():X}");
             

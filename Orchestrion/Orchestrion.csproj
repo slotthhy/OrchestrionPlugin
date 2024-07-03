@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
-    <PluginVersion>2.2.0.4</PluginVersion>
+    <PluginVersion>2.2.0.5</PluginVersion>
   </PropertyGroup>
   
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <LangVersion>preview</LangVersion>
     <AssemblyName>orchestrion</AssemblyName>
     <AssemblyTitle>orchestrion</AssemblyTitle>
@@ -65,7 +65,7 @@
       <Private>False</Private>
     </Reference>
     
-    <PackageReference Include="DalamudPackager" Version="2.1.12" />
+    <PackageReference Include="DalamudPackager" Version="2.1.13" />
   </ItemGroup>
   <ItemGroup>
     <ContentWithTargetPath Include="Data\xiv_bgm_en.csv">
