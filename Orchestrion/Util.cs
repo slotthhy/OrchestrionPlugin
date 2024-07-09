@@ -12,7 +12,7 @@ namespace Orchestrion;
 
 public static class Util
 {
-	public static List<string> AvailableLanguages => new() { "en", "ja", "de", "fr", "it", "zh" };
+	public static List<string> AvailableLanguages => new() { "en", "ja", "de", "es", "fr", "it", "zh" };
 	public static List<string> AvailableTitleLanguages => new() { "en", "ja", "zh" };
 	
 	public static string LangCodeToLanguage(string code)

@@ -1,230 +1,230 @@
 {
   "HelpMessage": {
-    "message": "Displays the Orchestrion window, to view, change, or stop in-game BGM.",
+    "message": "Zeigt das Orchestrion-Fenster an, um die Hintergrundmusik im Spiel anzusehen, zu ändern oder zu pausieren.",
     "description": "OrchestrionPlugin..ctor"
   },
   "MustSpecifySong": {
-    "message": "You must specify a song to play.",
+    "message": "Du musst einen Song angeben, der abgespielt werden soll.",
     "description": "OrchestrionPlugin.OnCommand"
   },
   "NoPlaylistPlaying": {
-    "message": "No playlist is currently playing.",
+    "message": "Es wird derzeit keine Playlist abgespielt.",
     "description": "OrchestrionPlugin.OnCommand"
   },
   "NoShuffleModeSpecified": {
-    "message": "Please specify a shuffle mode.",
+    "message": "Bitte gib einen Shuffle-Modus an.",
     "description": "OrchestrionPlugin.OnCommand"
   },
   "NoRepeatModeSpecified": {
-    "message": "Please specify a repeat mode.",
+    "message": "Bitte wähle einen Wiedergabemodus aus.",
     "description": "OrchestrionPlugin.OnCommand"
   },
   "SongIdNotFound": {
-    "message": "Song ID {0} not found.",
+    "message": "Song ID {0} nicht gefunden.",
     "description": "OrchestrionPlugin.OnCommand"
   },
   "InvalidMode": {
-    "message": "The specified mode is invalid.",
+    "message": "Der angegebene Modus ist ungültig.",
     "description": "OrchestrionPlugin.OnCommand"
   },
   "InvalidDDModeCommand": {
-    "message": "Invalid DDMode command <i>{0}</i>.",
+    "message": "Ungültiger DDMode Befehl <i>{0}</i>.",
     "description": "OrchestrionPlugin.OnCommand"
   },
   "PlaylistNotFound": {
-    "message": "Playlist <i>{0}</i> not found.",
+    "message": "Wiedergabeliste <i>{0}</i> nicht gefunden.",
     "description": "OrchestrionPlugin.OnCommand"
   },
   "SongNameNotFound": {
-    "message": "Song <i>{0}</i> not found.",
+    "message": "Song <i>{0}</i> nicht gefunden.",
     "description": "OrchestrionPlugin.HandlePlayBySongName"
   },
   "HelpColon": {
-    "message": "Help:",
+    "message": "Hilfe:",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "GeneralCommandsColon": {
-    "message": "General Commands:",
+    "message": "Allgemeine Befehle:",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpDisplayThisMessage": {
-    "message": "Display this message",
+    "message": "Zeige diese Nachricht an",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpOpenOrchestrionWindow": {
-    "message": "Open the Orchestrion window",
+    "message": "Öffne das Orchestrion-Fenster",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlaySongWithId": {
-    "message": "Play the song with the specified ID",
+    "message": "Lied mit der angegebenen ID abspielen",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlaySongWithName": {
-    "message": "Play the song with the specified name (both English and Japanese titles work)",
+    "message": "Spiele das Lied mit dem angegebenen Namen ab (sowohl englisch als auch japanisch ist möglich)",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlayRandomSong": {
-    "message": "Play a random song",
+    "message": "Spiele ein zufälliges Lied",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpStopSong": {
-    "message": "Stop the current playing song, replacement song, playlist, or DD mode.",
+    "message": "Stoppt das aktuelle Lied, Ersatz-Lied, die Wiedergabeliste oder den DD-Modus.",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpDDModeStart": {
-    "message": "Enable Deep Dungeon mode: On every in-game BGM change, replace BGM with a random song",
+    "message": "Aktiviere Deep Dungeon Modus: Ersetzt das aktuelle Lied bei jeder Hintergrundmusik Änderung im Spiel mit einem zufälligen Lied",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpDDModeStartPlaylist": {
-    "message": "Enable Deep Dungeon mode: On every in-game BGM change, replace BGM with a random song from the specified playlist",
+    "message": "Aktiviere Deep Dungeon Modus: Ersetzt das aktuelle Lied bei jeder Hintergrundmusik Änderung im Spiel mit einem zufälligen Lied aus der angegebenen Wiedergabeliste",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpDDModeStop": {
-    "message": "Disable Deep Dungeon mode.",
+    "message": "Deaktiviere Deep Dungeon Modus.",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "PlaylistCommandsColon": {
-    "message": "Playlist Commands:",
+    "message": "Playlist-Befehle:",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlayRandomSongFromPlaylist": {
-    "message": "Play a random song from the specified playlist (does not begin the playlist)",
+    "message": "Spiele ein zufälliges Lied aus der angegebenen Wiedergabeliste (startet nicht die Wiedergabeliste)",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlayPlaylist": {
-    "message": "Play the specified playlist with its current settings",
+    "message": "Spielt die Playlist mit ihren derzeitigen Einstellungen ab",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlayPlaylistShuffle": {
-    "message": "Play the specified playlist, changing the playlist's settings to shuffle",
+    "message": "Spielt die Playlist im \"Shuffle-Modus\" ab",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlayPlaylistRepeat": {
-    "message": "Play the specified playlist, changing the playlist's settings to 'repeat all'",
+    "message": "Spielt die Playlist im \"Alle Wiederholen\"-Modus ab",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlaylistShuffle": {
-    "message": "Set the current playlist to the specified shuffle mode",
+    "message": "\"Shuffle-Modus\" für die Playlist aktiviert",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlaylistRepeat": {
-    "message": "Set the current playlist to the specified repeat mode",
+    "message": "\"Alle Wiederholen\"-Modus für die Playlist aktiviert",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlaylistNext": {
-    "message": "Play the next song in the current playlist",
+    "message": "Spielt den nächsten Titel in der Playlist ab",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "HelpPlaylistPrevious": {
-    "message": "Play the previous song in the current playlist",
+    "message": "Spielt den vorherigen Titel der Playlist ab",
     "description": "OrchestrionPlugin.PrintHelp"
   },
   "NowPlayingEcho": {
-    "message": "Now playing <i>{0}</i>.",
+    "message": "Aktuell läuft: <i>{0}</i>.",
     "description": "OrchestrionPlugin.UpdateChat"
   },
   "CreateNewPlaylist": {
-    "message": "Create New Playlist",
+    "message": "Neue Playlist erstellen",
     "description": "NewPlaylistModal.Draw"
   },
   "EnterPlaylistNameColon": {
-    "message": "Enter a name for your playlist:",
+    "message": "Vergib einen Namen für deine Playlist:",
     "description": "NewPlaylistModal.Draw"
   },
   "Create": {
-    "message": "Create",
+    "message": "Erstellen",
     "description": "NewPlaylistModal.Draw"
   },
   "Cancel": {
-    "message": "Cancel",
+    "message": "Abbrechen",
     "description": "NewPlaylistModal.Draw"
   },
   "GeneralSettings": {
-    "message": "General Settings",
+    "message": "Allgemeine Einstellungen",
     "description": "SettingsWindow.Draw"
   },
   "ShowSongTitleBar": {
-    "message": "Show current song in player title bar",
+    "message": "Aktuellen Songnamen in der Titelleiste von Orchestrion anzeigen",
     "description": "SettingsWindow.Draw"
   },
   "ShowNowPlayingChat": {
-    "message": "Show \"Now playing\" messages in game chat when the current song changes",
+    "message": "Zeige Benachrichtigunen im Chat an, wenn ein neuer Titel abgespielt wird",
     "description": "SettingsWindow.Draw"
   },
   "ShowSongServerInfo": {
-    "message": "Show current song in the \"server info\" UI element in-game",
+    "message": "Zeige den aktuellen Titel im \"Server-Info\" UI-Element",
     "description": "SettingsWindow.Draw"
   },
   "ShowSongIdServerInfo": {
-    "message": "Show song ID in the \"server info\" UI element in-game",
+    "message": "Zeige die aktuelle Song-ID im \"Server-Info\" UI-Element",
     "description": "SettingsWindow.Draw"
   },
   "HandleSpecialModes": {
-    "message": "Handle special \"in-combat\" and mount movement BGM modes",
+    "message": "Verwalte Modi \"Im Kampf\" und \"Auf Reittier\"",
     "description": "SettingsWindow.Draw"
   },
   "AudioStreamingDisabledWarning": {
-    "message": "Audio streaming is disabled. This may be due to Sound Filter or a third-party plugin. The above setting may not work as expected and you may encounter other audio issues such as popping or tracks not swapping channels. This is not related to the Orchestrion Plugin.",
+    "message": "Audio-Streaming ist deaktiviert. Dies kann durch den Soundfilter oder ein Plugin eines Drittanbieters verursacht werden. Die obige Einstellung funktioniert daher möglicherweise nicht wie erwartet, was zu Soundproblemen führen kann. Dies hat nichts mit dem Orchestrion Plugin zu tun.",
     "description": "SettingsWindow.Draw"
   },
   "UseDalamudChannelSetting": {
-    "message": "Use the chat channel selected in Dalamud's settings for Orchestrion's chat messages (default)",
+    "message": "Verwende den Chatmodus, der in Dalamud ausgewählt wurde, für Benachrichtigungen von Orchestrion (Standard)",
     "description": "SettingsWindow.Draw"
   },
   "ChatChannelSetting": {
-    "message": "Chat channel used for Orchestrion messages",
+    "message": "Chatmodus der für Benachrichtigungen von Orchestrion verwendet wird",
     "description": "SettingsWindow.Draw"
   },
   "LocSettings": {
-    "message": "Localization Settings",
+    "message": "Spracheinstellungen",
     "description": "SettingsWindow.Draw"
   },
   "UseDalamudLanguageSetting": {
-    "message": "Use the language selected in Dalamud's settings for the Orchestrion Plugin's UI",
+    "message": "Benutze die für Dalamud verwendete Sprache für die Oberfläche von Orchestrion",
     "description": "SettingsWindow.Draw"
   },
   "UILanguageSetting": {
-    "message": "Language used for the Orchestrion Plugin's UI",
+    "message": "Sprache für die Oberfläche von Orchestrion",
     "description": "SettingsWindow.Draw"
   },
   "ShowAltLangTitles": {
-    "message": "Show alternate language song titles in tooltips",
+    "message": "Zeige alternativen Songtitel in Tooltips",
     "description": "SettingsWindow.Draw"
   },
   "AltLangLanguageSetting": {
-    "message": "Alternate language for song titles in tooltips",
+    "message": "Alternative Sprache für Songtitel in Tooltips",
     "description": "SettingsWindow.Draw"
   },
   "ServerInfoLanguageSetting": {
-    "message": "Language used for song titles in the \"server info\" UI element in-game",
+    "message": "Sprache für Songtitel im \"Server-Info\" Element",
     "description": "SettingsWindow.Draw"
   },
   "ChatMessageLanguageSetting": {
-    "message": "Language used for song titles in Orchestrion chat messages in-game",
+    "message": "Sprache für Songtitel im Chat",
     "description": "SettingsWindow.Draw"
   },
   "MiniPlayerSettings": {
-    "message": "Mini Player Settings",
+    "message": "Miniplayer Einstellungen",
     "description": "SettingsWindow.Draw"
   },
   "ShowMiniPlayer": {
-    "message": "Show mini player",
+    "message": "Miniplayer anzeigen",
     "description": "SettingsWindow.Draw"
   },
   "LockMiniPlayer": {
-    "message": "Lock mini player",
+    "message": "Miniplayer sperren",
     "description": "SettingsWindow.Draw"
   },
   "MiniPlayerOpacity": {
-    "message": "Mini player opacity",
+    "message": "Transparenz Miniplayer",
     "description": "SettingsWindow.Draw"
   },
   "DDModeDescription": {
-    "message": "Deep Dungeon Mode is a feature that will instead play a random track from either \"All Songs\" or a specified playlist whenever the track changes.",
+    "message": "Deep Dungeon Modus ist eine Funktion, die einen zufälligen Song aus allen verfügbaren Songtiteln im Spiel oder einer Playlist abspielt, wenn sich der Songtitel ändert.",
     "description": "MainWindow.DrawDeepDungeonModeSelector"
   },
   "DDPlaylistAll": {
-    "message": "All Songs",
+    "message": "Alle Titel",
     "description": "MainWindow.DrawDeepDungeonModeSelector"
   },
   "DDPlaylist": {
@@ -232,27 +232,27 @@
     "description": "MainWindow.DrawDeepDungeonModeSelector"
   },
   "DDModeStart": {
-    "message": "Start Deep Dungeon Mode",
+    "message": "Starte Deep Dungeon Modus",
     "description": "MainWindow.DrawDeepDungeonModeSelector"
   },
   "DDModeEnd": {
-    "message": "Stop Deep Dungeon Mode",
+    "message": "Beende Deep Dungeon Modus",
     "description": "MainWindow.DrawDeepDungeonModeSelector"
   },
   "NoPlaylistSelected": {
-    "message": "No Playlist Selected",
+    "message": "Keine Playlist ausgewählt",
     "description": "MainWindow.DrawPlaylistSongs"
   },
   "SelectAPlaylist": {
-    "message": "Select a playlist.",
+    "message": "Wähle eine Playlist.",
     "description": "MainWindow.DrawPlaylistSongs"
   },
   "Play": {
-    "message": "Play",
+    "message": "Abspielen",
     "description": "MainWindow.DrawPlaylistPane"
   },
   "Repeat": {
-    "message": "Repeat",
+    "message": "Wiederholen",
     "description": "MainWindow.DrawPlaylistPane"
   },
   "Shuffle": {
@@ -260,99 +260,99 @@
     "description": "MainWindow.DrawPlaylistPane"
   },
   "ClickAgainDelete": {
-    "message": "Click again to confirm deletion",
+    "message": "Zum Löschen erneut klicken",
     "description": "MainWindow.DrawPlaylistPane"
   },
   "Delete": {
-    "message": "Delete",
+    "message": "Löschen",
     "description": "MainWindow.DrawPlaylistPane"
   },
   "NewPlaylistEllipsis": {
-    "message": "New playlist...",
+    "message": "Neue Playlist...",
     "description": "MainWindow.DrawPlaylistPane"
   },
   "Playlists": {
-    "message": "Playlists",
+    "message": "Playlisten",
     "description": "MainWindow.DrawPlaylistPaneButton"
   },
   "ReplaceWith": {
-    "message": "will be replaced with",
+    "message": "wird ersetzt durch",
     "description": "MainWindow.DrawReplacementList"
   },
   "Edit": {
-    "message": "Edit",
+    "message": "Bearbeiten",
     "description": "MainWindow.DrawReplacementList"
   },
   "TargetSong": {
-    "message": "Target Song",
+    "message": "Zu ersetzender Titel",
     "description": "MainWindow.DrawCurrentReplacement"
   },
   "ReplacementSong": {
-    "message": "Replacement Song",
+    "message": "Neuer Titel",
     "description": "MainWindow.DrawCurrentReplacement"
   },
   "AddReplacement": {
-    "message": "Add as song replacement",
+    "message": "Ersatz zur Liste hinzufügen",
     "description": "MainWindow.DrawCurrentReplacement"
   },
   "SearchColon": {
-    "message": "Search:",
+    "message": "Suche:",
     "description": "MainWindow.Draw"
   },
   "AllSongs": {
-    "message": "All Songs",
+    "message": "Alle Titel",
     "description": "MainWindow.Draw"
   },
   "History": {
-    "message": "History",
+    "message": "Verlauf",
     "description": "MainWindow.Draw"
   },
   "Replacements": {
-    "message": "Replacements",
+    "message": "Ersetzungen",
     "description": "MainWindow.Draw"
   },
   "DDMode": {
-    "message": "DD Mode",
+    "message": "DD Modus",
     "description": "MainWindow.Draw"
   },
   "Stop": {
-    "message": "Stop",
+    "message": "Stopp",
     "description": "MainWindow.DrawFooter"
   },
   "NoChange": {
-    "message": "Do not change BGM",
+    "message": "Nicht ersetzen",
     "description": "MainWindow..cctor"
   },
   "SecondsAgo": {
-    "message": "{0}s ago",
+    "message": "Vor {0}s",
     "description": "MainWindow..cctor"
   },
   "MinutesAgo": {
-    "message": "{0}m ago",
+    "message": "Vor {0}m",
     "description": "MainWindow..cctor"
   },
   "SongInfo": {
-    "message": "Song Info",
+    "message": "Song-Info",
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "TitleColon": {
-    "message": "Title: ",
+    "message": "Titel: ",
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "AlternateTitleColon": {
-    "message": "Alternate Title: ",
+    "message": "Alternativer Titel: ",
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "SpecialModeTitleColon": {
-    "message": "Special Mode Title: ",
+    "message": "Spezialmodus Titel: ",
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "LocationColon": {
-    "message": "Location: ",
+    "message": "Ort: ",
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "Unknown": {
-    "message": "Unknown",
+    "message": "Unbekannt",
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "InfoColon": {
@@ -360,103 +360,103 @@
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "DurationColon": {
-    "message": "Duration: ",
+    "message": "Länge: ",
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "SongNotFound": {
-    "message": "This song is unavailable; the track is not present in the current game files.",
+    "message": "Dieser Song ist nicht verfügbar; der Titel ist in den Spieldateien nicht vorhanden.",
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "FilePathColon": {
-    "message": "File Path: ",
+    "message": "Dateipfad: ",
     "description": "BgmTooltip.DrawBgmTooltip"
   },
   "None": {
-    "message": "None",
+    "message": "Nichts",
     "description": "Player.Draw"
   },
   "FromPlaylist": {
-    "message": "From: {0}",
+    "message": "Von: {0}",
     "description": "Player.Draw"
   },
   "PopOutMiniPlayer": {
-    "message": "Pop mini-player out of the Orchestrion window",
+    "message": "Miniplayer in separatem Fenster anzeigen",
     "description": "Player.Draw"
   },
   "PopInMiniPlayer": {
-    "message": "Pop mini-player back into the Orchestrion window",
+    "message": "Miniplayer wieder in Orchestrion anzeigen",
     "description": "Player.Draw"
   },
   "RepeatOne": {
-    "message": "Repeat One: Repeating current song",
+    "message": "Eins wiederholen: Aktuelles Lied wiederholen",
     "description": "Player.Draw"
   },
   "RepeatAll": {
-    "message": "Repeat All: Repeating current playlist",
+    "message": "Alle wiederholen: Wiederhole die aktuelle Playlist",
     "description": "Player.Draw"
   },
   "RepeatOnce": {
-    "message": "Repeat Once: Playing current playlist through once",
+    "message": "Einmal wiederholen: Die Playlist wird einmal durchgespielt",
     "description": "Player.Draw"
   },
   "ShuffleOff": {
-    "message": "Shuffle Off: Playing songs in order",
+    "message": "Shuffle aus: Songs werden in Reihenfolge gespielt",
     "description": "Player.Draw"
   },
   "ShuffleOn": {
-    "message": "Shuffle On: Playing songs randomly",
+    "message": "Shuffle ein: Songs zufällig abspielen",
     "description": "Player.Draw"
   },
   "AddTo": {
-    "message": "Add to...",
+    "message": "Hinzufügen zu...",
     "description": "RenderableSongList.DrawPlaylistAddSubmenu"
   },
   "SongId": {
-    "message": "Song ID",
+    "message": "Song-ID",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "SongTitle": {
-    "message": "Song Title",
+    "message": "Songtitel",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "SongAltTitle": {
-    "message": "Song Alternate Title",
+    "message": "Alternativer Songtitel",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "SongSpcModeTitle": {
-    "message": "Song Special Mode Title",
+    "message": "Spezialmodus",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "SongLocation": {
-    "message": "Song Location",
+    "message": "Ort",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "SongAdditionalInfo": {
-    "message": "Song Additional Info",
+    "message": "Zusätzliche Info",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "Duration": {
-    "message": "Duration",
+    "message": "Länge",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "SongFilePath": {
-    "message": "Song File Path",
+    "message": "Dateipfad",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "All": {
-    "message": "All",
+    "message": "Alle",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "Copy": {
-    "message": "Copy",
+    "message": "Kopieren",
     "description": "RenderableSongList.DrawCopyContentSubmenu"
   },
   "RemoveSelected": {
-    "message": "Remove {0} song(s)",
+    "message": "Entferne {0} Lied(er)",
     "description": "RenderableSongList.DrawRemoveSubmenu"
   },
   "NoPossibleSongs": {
-    "message": "No possible songs found.",
+    "message": "Keine verfügbaren Lieder gefunden.",
     "description": "BGMManager.PlayRandomSong"
   }
 }

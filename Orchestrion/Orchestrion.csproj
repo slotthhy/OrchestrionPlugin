@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
-    <PluginVersion>2.2.0.5</PluginVersion>
+    <PluginVersion>2.2.0.6</PluginVersion>
   </PropertyGroup>
   
   <PropertyGroup>
@@ -101,6 +101,8 @@
     <EmbeddedResource Include="Loc\de.json" />
     <None Remove="Loc\en.json" />
     <EmbeddedResource Include="Loc\en.json" />
+    <None Remove="Loc\es.json" />
+    <EmbeddedResource Include="Loc\es.json" />
     <None Remove="Loc\fr.json" />
     <EmbeddedResource Include="Loc\fr.json" />
     <None Remove="Loc\it.json" />

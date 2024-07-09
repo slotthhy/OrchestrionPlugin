@@ -13,6 +13,7 @@
                         xiv_bgm_de.csv;
                         xiv_bgm_fr.csv;
                         xiv_bgm_ja.csv;
+                        xiv_bgm_zh.csv;
                         xiv_bgm_metadata.csv;
                         orchestrion.json"/>
     </Target>    
