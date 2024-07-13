@@ -430,7 +430,7 @@ public class OrchestrionPlugin : IDalamudPlugin
 
 		var text = songName + suffix;
 
-		text = playedByOrch ? $"{NativeNowPlayingPrefix} [{text}]" : $"{NativeNowPlayingPrefix} {text}";
+		text = playedByOrch ? $"{NativeNowPlayingPrefix}[{text}]" : $"{NativeNowPlayingPrefix}{text}";
 		
 		_dtrEntry.Text = text;
 
