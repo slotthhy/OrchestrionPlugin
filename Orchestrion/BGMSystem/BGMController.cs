@@ -52,7 +52,7 @@ public class BGMController
     private unsafe delegate DisableRestart* AddDisableRestartIdPrototype(BGMScene* scene, ushort songId);
     private readonly AddDisableRestartIdPrototype _addDisableRestartId;
         
-    private unsafe delegate int GetSpecialModeByScenePrototype(BGMPlayer* bgmPlayer, byte specialModeType);
+    private unsafe delegate int GetSpecialModeByScenePrototype(BGMPlayer* bgmPlayer);
     private readonly Hook<GetSpecialModeByScenePrototype> _getSpecialModeForSceneHook;
     
     public unsafe BGMController()
@@ -196,15 +196,15 @@ public class BGMController
         }
     }
 
-    private unsafe int GetSpecialModeBySceneDetour(BGMPlayer* player, byte specialModeType)
+    private unsafe int GetSpecialModeBySceneDetour(BGMPlayer* player)
     {
         // Let the game do what it needs to do
         if (player->BgmScene != PlayingScene
             || player->BgmId != PlayingSongId
-            || specialModeType == 0) 
-            return _getSpecialModeForSceneHook.Original(player, specialModeType);
+            || player->SpecialModeType == 0) 
+            return _getSpecialModeForSceneHook.Original(player);
             
-        if (!SongList.Instance.TryGetSong(player->BgmId, out var song)) return _getSpecialModeForSceneHook.Original(player, specialModeType);
+        if (!SongList.Instance.TryGetSong(player->BgmId, out var song)) return _getSpecialModeForSceneHook.Original(player);
 
         // Default to scene 10 behavior, but if the mode is mount mode, use the mount scene
         uint newScene = 10;
@@ -214,7 +214,7 @@ public class BGMController
         // Trick the game into giving us the result we want for the scene our song should actually be playing on
         var tempScene = player->BgmScene;
         player->BgmScene = newScene;
-        var result = _getSpecialModeForSceneHook.Original(player, specialModeType);
+        var result = _getSpecialModeForSceneHook.Original(player);
         player->BgmScene = tempScene;
         return result;
     }

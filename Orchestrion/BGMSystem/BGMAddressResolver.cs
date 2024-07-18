@@ -15,7 +15,7 @@ public static class BGMAddressResolver
     {
         _baseAddress = DalamudApi.SigScanner.GetStaticAddressFromSig("48 8B 05 ?? ?? ?? ?? 48 85 C0 74 51 83 78 08 0B");
         AddRestartId = DalamudApi.SigScanner.ScanText("E8 ?? ?? ?? ?? 88 9D ?? ?? ?? ?? 84 DB");
-        GetSpecialMode = DalamudApi.SigScanner.ScanText("48 89 5C 24 ?? 57 48 83 EC 20 44 8B 41 10");
+        GetSpecialMode = DalamudApi.SigScanner.ScanText("40 57 48 83 EC 20 48 83 79 ?? ?? 48 8B F9 0F 84 ?? ?? ?? ?? 0F B6 51 4D");
             
         DalamudApi.PluginLog.Debug($"[BGMAddressResolver] init: base address at {_baseAddress.ToInt64():X}");
             
