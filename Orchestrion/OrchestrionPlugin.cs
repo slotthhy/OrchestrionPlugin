@@ -147,7 +147,9 @@ public class OrchestrionPlugin : IDalamudPlugin
 
 	private void CheckDtr()
 	{
-		_dtrEntry.Shown = Configuration.Instance.ShowSongInNative;
+		var show = Configuration.Instance.ShowSongInNative;
+		if (_dtrEntry.Shown != show)
+			_dtrEntry.Shown = show;
 	}
 	
 	private void UpdateSettings()
