@@ -219,6 +219,10 @@
     "message": "ミニプレーヤーの不透明度",
     "description": "SettingsWindow.Draw"
   },
+  "DisableFateMusic": {
+    "message": "Prevent fate music from overriding location music",
+    "description": "SettingsWindow.Draw"
+  },
   "DDModeDescription": {
     "message": "ディープダンジョンモードは、トラックが変更されるたびに、「すべての楽曲」または指定されたプレイリストからランダムなトラックを再生する機能です。",
     "description": "MainWindow.DrawDeepDungeonModeSelector"

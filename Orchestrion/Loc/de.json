@@ -219,6 +219,10 @@
     "message": "Transparenz Miniplayer",
     "description": "SettingsWindow.Draw"
   },
+  "DisableFateMusic": {
+    "message": "Prevent fate music from overriding location music",
+    "description": "SettingsWindow.Draw"
+  },
   "DDModeDescription": {
     "message": "Deep Dungeon Modus ist eine Funktion, die einen zufälligen Song aus allen verfügbaren Songtiteln im Spiel oder einer Playlist abspielt, wenn sich der Songtitel ändert.",
     "description": "MainWindow.DrawDeepDungeonModeSelector"

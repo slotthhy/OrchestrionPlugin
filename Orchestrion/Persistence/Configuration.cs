@@ -17,6 +17,7 @@ public class Configuration : IPluginConfiguration
     public bool ShowIdInNative { get; set; } = false;
     public bool ShowSongInNative { get; set; } = true;
     public bool HandleSpecialModes { get; set; } = true;
+    public bool DisableFateMusic { get; set; } = false;
     public bool ShowFilePaths { get; set; } = true;
     public bool PlaylistPaneOpen { get; set; } = true;
     public bool ShowMiniPlayer { get; set; } = false;

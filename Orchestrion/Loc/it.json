@@ -219,6 +219,10 @@
     "message": "Opacità riproduttore ridotto",
     "description": "SettingsWindow.Draw"
   },
+  "DisableFateMusic": {
+    "message": "Prevent fate music from overriding location music",
+    "description": "SettingsWindow.Draw"
+  },
   "DDModeDescription": {
     "message": "Deep Dungeon Mode is a feature that will instead play a random track from either \"All Songs\" or a specified playlist whenever the track changes.",
     "description": "MainWindow.DrawDeepDungeonModeSelector"

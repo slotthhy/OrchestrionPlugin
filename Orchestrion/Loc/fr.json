@@ -219,6 +219,10 @@
     "message": "Transparence du mini lecteur",
     "description": "SettingsWindow.Draw"
   },
+  "DisableFateMusic": {
+    "message": "Prevent fate music from overriding location music",
+    "description": "SettingsWindow.Draw"
+  },
   "DDModeDescription": {
     "message": "Le mode Donjon sans fond (DD) est une fonction qui permet de jouer une piste aléatoire de \"Toutes les musiques\" ou d'une playlist à chaque fois que la piste change.",
     "description": "MainWindow.DrawDeepDungeonModeSelector"
