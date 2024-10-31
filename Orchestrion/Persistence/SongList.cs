@@ -12,7 +12,10 @@ public class SongList
     private const string SheetPath = @"https://docs.google.com/spreadsheets/d/1qAkxPiXWF-EUHbIXdNcO-Ilo2AwLnqvdpW9tjKPitPY/gviz/tq?tqx=out:csv&sheet={0}";
     private const string SheetFileName = "xiv_bgm_{0}.csv";
     private readonly Dictionary<int, Song> _songs;
-    private readonly HttpClient _client = new();
+    private readonly HttpClient _client = new(){Timeout = TimeSpan.FromSeconds(10)};
+    
+    private const string SheetPathCN = @"https://s3.ffxiv.wang/xlassets/pluginfiles/Orch_{0}.csv";
+    //Update at: https://github.com/ottercorp/XLAssets/tree/master/pluginfiles
 
     private static SongList _instance;
     public static SongList Instance => _instance ??= new SongList();
@@ -57,6 +60,8 @@ public class SongList
     
     private string GetRemoteSheet(string code)
     {
+        if ((uint)DalamudApi.ClientState.ClientLanguage == 4)
+            return _client.GetStringAsync(string.Format(SheetPathCN, code)).Result;
         return _client.GetStringAsync(string.Format(SheetPath, code)).Result;
     }
 
