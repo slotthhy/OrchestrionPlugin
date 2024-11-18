@@ -31,15 +31,21 @@ public static class BgmTooltip
 		if (Configuration.Instance.ShowAltLangTitles)
 		{
 			var code = Configuration.Instance.AltTitleLanguageCode;
-			var altLangTitle = bgm.Strings[code].Name;
-			if (bgm.Name != altLangTitle && !string.IsNullOrEmpty(altLangTitle))
+
+			if (bgm.Strings.TryGetValue(code, out var altLangStrings) && altLangStrings.Name != bgm.Name && !string.IsNullOrEmpty(altLangStrings.Name)) {
+				DisplayDetail(altLangStrings);
+			} else if (bgm.Strings.TryGetValue("en", out altLangStrings) && altLangStrings.Name != bgm.Name && !string.IsNullOrEmpty(altLangStrings.Name)) {
+				DisplayDetail(altLangStrings);
+			}
+
+				void DisplayDetail(SongStrings altLangStrings)
 			{
 				var label = Loc.Localize("TitleColon", "Title: ");
 				label = $"[{code}] {label}";
 				ImGui.TextColored(ImGuiColors.DalamudGrey, label);
 				ImGui.SameLine();
 				using var _ = code == "zh" ? OrchestrionPlugin.CnFont.Push() : null;
-				ImGui.TextWrapped(altLangTitle);
+				ImGui.TextWrapped(altLangStrings.Name);
 			}
 		}
 

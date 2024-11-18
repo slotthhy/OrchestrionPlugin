@@ -20,6 +20,7 @@ using Orchestrion.BGMSystem;
 using Orchestrion.Persistence;
 using Orchestrion.UI.Windows;
 using MainWindow = Orchestrion.UI.Windows.MainWindow.MainWindow;
+using Orchestrion.Types;
 
 namespace Orchestrion;
 
@@ -417,9 +418,14 @@ public class OrchestrionPlugin : IDalamudPlugin
 	{
 		if (_dtrEntry == null) return;
 		if (!SongList.Instance.TryGetSong(songId, out var song)) return;
-		var songName = song.Strings[Configuration.Instance.ServerInfoLanguageCode].Name;
-		var locations = song.Strings[Configuration.Instance.ServerInfoLanguageCode].Locations;
-		var info = song.Strings[Configuration.Instance.ServerInfoLanguageCode].AdditionalInfo;
+
+		if (!song.Strings.TryGetValue(Configuration.Instance.ServerInfoLanguageCode, out var strings)) {
+			strings = song.Strings["en"];
+		}
+
+		var songName = strings.Name;
+		var locations = strings.Locations;
+		var info = strings.AdditionalInfo;
 		if (string.IsNullOrEmpty(songName)) return;
 
 		var suffix = "";
